@@ -1,6 +1,12 @@
 body{
     background-color: #b1b2b8;
 }
-nav{
-    background-color: #7f8081;
+.nav{
+    background-color: #989a9c;
+}
+main{
+    background-color: #cccdcf;
+}
+.alert{
+    display:inline-block;
 }

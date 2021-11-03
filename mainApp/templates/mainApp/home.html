@@ -1,0 +1,18 @@
+{% extends 'mainApp/base.html' %}
+{% block title %} home {% endblock %}
+
+{% block message %}
+{% if messages %}
+    {% for message in messages %}
+<div class="container text-center pt-1 mt-1">
+  <div class="alert alert-{{ message.tags }}" role="alert">
+    {{ message }}
+  </div>
+</div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Join us today!</h1>
+{% endblock %}
