@@ -28,12 +28,21 @@
               </li>
             </ul>
             <ul class="navbar-nav ms-auto me-1 mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Sing up</a>
-                </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'login' %}">Log In</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}">Sing up</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
