@@ -1,9 +1,13 @@
 from django.shortcuts import redirect, render
 from .forms import UserRegisterForm
 from django.contrib import messages
+from django.contrib.auth import login
+
 
 # Create your views here.
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
