@@ -1,0 +1,24 @@
+{% extends 'mainApp/base.html' %}
+{% block title %} My Wallet {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-2 p-3 text-center">
+            <div class="border border-dark p-1">place for pics</div>
+            
+                {{ user.get_username }}
+            
+            
+        </div>
+        <div class="col-10 ">
+            <div>
+                <h3>Expenses</h3>
+                <p></p>
+            </div>
+            <hr>
+            <div>
+                <h3>Incomes</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}
