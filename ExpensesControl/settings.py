@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainApp.apps.MainappConfig',
     'users.apps.UsersConfig',
+    'wallet.apps.WalletConfig',
     'crispy_forms',
 ]
 
