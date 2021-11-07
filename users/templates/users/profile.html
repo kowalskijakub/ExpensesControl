@@ -1,0 +1,41 @@
+{% extends 'mainApp/base.html' %}
+{% block title %} {{user.get_username}} - Profile {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-2 p-3 text-center">
+        <div class="border border-dark p-1">place for pics</div>
+        
+            {{ user.get_username }}
+        
+        
+    </div>
+    <div class="col-10 p-3">
+        <p class="h4 text-center">You are with us from <b>October 2021</b>! Thank you for your trust.</p>
+        <hr>
+        <div>
+            <p class="h5">Details about yourself:</p>
+            <div class="row">
+                <div class="col-4">
+                    <ol class="list-group">
+                        <li class="list-group-item">Name: </li>
+                        <li class="list-group-item">Surname: </li>
+                        <li class="list-group-item">E-mail: </li>
+                        <li class="list-group-item">Date of account creation:</li>
+                    </ol>
+                </div>
+                <div class="col-8">
+                    <ol class="list-group fw-bold">
+                        <li class="list-group-item">John</li>
+                        <li class="list-group-item">Smith</li>
+                        <li class="list-group-item">example@example.com</li>
+                        <li class="list-group-item">7 October 2021</li>
+                    </ol>
+                </div>
+                
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
