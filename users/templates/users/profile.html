@@ -1,5 +1,5 @@
 {% extends 'mainApp/base.html' %}
-{% block title %} {{user.get_username}} - Profile {% endblock %}
+{% block title %} {{user.username}} - Profile {% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-2 p-3 text-center">
@@ -25,10 +25,10 @@
                 </div>
                 <div class="col-8">
                     <ol class="list-group fw-bold">
-                        <li class="list-group-item">John</li>
-                        <li class="list-group-item">Smith</li>
-                        <li class="list-group-item">example@example.com</li>
-                        <li class="list-group-item">7 October 2021</li>
+                        <li class="list-group-item">{{ user.first_name }}</li>
+                        <li class="list-group-item">{{ user.last_name }}</li>
+                        <li class="list-group-item">{{ user.email }}</li>
+                        <li class="list-group-item">{{ user.profile.createDate|date:'E n, Y' }}</li>
                     </ol>
                 </div>
                 
