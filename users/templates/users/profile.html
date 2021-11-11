@@ -2,20 +2,19 @@
 {% block title %} {{user.username}} - Profile {% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col-2 p-3 text-center">
-        <div class="border border-dark p-1">place for pics</div>
-        
-            {{ user.get_username }}
+    <div class="col-12 col-lg-2 p-3 text-center">
+        <div class="border border-dark p-1 pics">place for pics</div>
+         <p> Hello <b>{{ user.get_username }}</b>!</p>
         
         
     </div>
-    <div class="col-10 p-3">
-        <p class="h4 text-center">You are with us from <b>October 2021</b>! Thank you for your trust.</p>
+    <div class="col-12 col-lg-10 p-3">
+        <p class="h4 text-center">You are with us from <b>{{ user.profile.createDate|date:'E Y' }}</b>! Thank you for your trust.</p>
         <hr>
         <div>
             <p class="h5">Details about yourself:</p>
             <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                     <ol class="list-group">
                         <li class="list-group-item">Name: </li>
                         <li class="list-group-item">Surname: </li>
@@ -23,13 +22,17 @@
                         <li class="list-group-item">Date of account creation:</li>
                     </ol>
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                     <ol class="list-group fw-bold">
-                        <li class="list-group-item">{{ user.first_name }}</li>
-                        <li class="list-group-item">{{ user.last_name }}</li>
-                        <li class="list-group-item">{{ user.email }}</li>
+                        <li class="list-group-item"> {{ user.first_name|default:"--"  }}</li>
+                        <li class="list-group-item">{{ user.last_name|default:"--"  }}</li>
+                        <li class="list-group-item">{{ user.email|default:"--"  }}</li>
                         <li class="list-group-item">{{ user.profile.createDate|date:'E n, Y' }}</li>
                     </ol>
+                </div>
+                <div class="m-1">
+                    <a class="btn btn-primary" href="#">Update data</a>
+                    <a class="btn btn-danger" href="#">Delete account</a>
                 </div>
                 
 
