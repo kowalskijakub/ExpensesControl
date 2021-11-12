@@ -1,0 +1,17 @@
+{% extends 'users/loggedBase.html' %}
+{% load crispy_forms_tags %}
+{% block profileContent %}
+    <p class="h4 text-center">Update information about you!</p>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Profile info</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button type="submit" class="m-1 btn btn-primary">Update</button>
+        </div>
+    </form>
+{% endblock %}

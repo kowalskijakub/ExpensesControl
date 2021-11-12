@@ -1,14 +1,6 @@
-{% extends 'mainApp/base.html' %}
+{% extends 'users/loggedBase.html' %}
 {% block title %} {{user.username}} - Profile {% endblock %}
-{% block content %}
-<div class="row">
-    <div class="col-12 col-lg-2 p-3 text-center">
-        <div class="border border-dark p-1 pics">place for pics</div>
-         <p> Hello <b>{{ user.get_username }}</b>!</p>
-        
-        
-    </div>
-    <div class="col-12 col-lg-10 p-3">
+{% block profileContent %}
         <p class="h4 text-center">You are with us from <b>{{ user.profile.createDate|date:'E Y' }}</b>! Thank you for your trust.</p>
         <hr>
         <div>
@@ -31,7 +23,7 @@
                     </ol>
                 </div>
                 <div class="m-1">
-                    <a class="btn btn-primary" href="#">Update data</a>
+                    <a class="btn btn-primary" href="{% url 'updateProfile' %}">Update data</a>
                     <a class="btn btn-danger" href="#">Delete account</a>
                 </div>
                 
@@ -39,6 +31,4 @@
             </div>
             
         </div>
-    </div>
-</div>
 {% endblock %}

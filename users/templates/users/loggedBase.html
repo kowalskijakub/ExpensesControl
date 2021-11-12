@@ -1,0 +1,18 @@
+{% extends 'mainApp/base.html' %}
+{% block title %} {{user.username}} - Profile {% endblock %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-lg-2 p-3 text-center">
+        <div class="border border-dark p-1 pics"><img src="{{ user.profile.image.url }}" class="img-fluid" alt=""></div>
+         <p> Hello <b>{{ user.get_username }}</b>!</p>
+        
+        
+    </div>
+    <div class="col-12 col-lg-10 p-3">
+        
+        {% block profileContent %}{% endblock %}
+       
+    </div>
+</div>
+{% endblock %}
