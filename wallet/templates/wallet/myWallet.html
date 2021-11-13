@@ -1,15 +1,63 @@
 {% extends 'users/loggedBase.html' %}
 {% block title %} My Wallet {% endblock %}
 
+{% block addition %} 
+    <p>
+        October summary: <b>+1300$</b>
+    </p>
+{% endblock %}
+
 {% block profileContent %}
     <div class="col-12 col-lg-10 ">
         <div>
             <h3>Expenses</h3>
-            <p></p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Type</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>
+                        <button type="button" class="btn btn-warning">Edit</button>
+                        <button type="button" class="btn btn-danger">Del</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" class="btn btn-success">Add</button>
+              <button type="button" class="btn btn-info">Show more</button>
         </div>
         <hr>
         <div>
             <h3>Incomes</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
     </div>
 {% endblock %}
