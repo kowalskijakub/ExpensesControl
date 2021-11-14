@@ -1,0 +1,23 @@
+{% extends 'users/loggedBase.html' %}
+{% block title %} My Wallet - Add {% endblock %}
+
+{% block addition %} 
+    <p>
+        Expenses summary: <b>+1300$</b>
+    </p>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block profileContent %}
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend>Add Expense:</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group mt-1">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
