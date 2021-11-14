@@ -9,7 +9,7 @@
 {% load crispy_forms_tags %}
 {% block profileContent %}
     <div>
-        <form method="post">
+        <form method="post" action="{% url 'addToWallet' %}">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend>Add Expense:</legend>
