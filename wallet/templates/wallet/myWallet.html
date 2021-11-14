@@ -17,21 +17,29 @@
                     <th scope="col">Date</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Source</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Payment Method</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for expense in expenses %}
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{expense.date}}</th>
+                    <td>{{expense.amount}}</td>
+                    <td>{{expense.source}}</td>
+                    <td>
+                      {% ifequal expense.paymentMethod "B" %}
+                      Bank
+                      {% else %}
+                      Cash
+                      {% endifequal %}
+                    </td>
                     <td>
                         <a type="button" class="btn btn-warning">Edit</a>
                         <a type="button" class="btn btn-danger">Del</a>
                     </td>
                   </tr>
+                {% endfor %}
                 </tbody>
               </table>
               <a type="button" class="btn btn-success" href="{% url 'addToWallet' %}">Add</a>
@@ -50,12 +58,24 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for income in incomes %}
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{income.date}}</th>
+                    <td>{{income.amount}}</td>
+                    <td>{{income.source}}</td>
+                    <td>
+                      {% ifequal income.paymentMethod "B" %}
+                      Bank
+                      {% else %}
+                      Cash
+                      {% endifequal %}
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-warning">Edit</a>
+                        <a type="button" class="btn btn-danger">Del</a>
+                    </td>
                   </tr>
+                {% endfor %}
                 </tbody>
               </table>
         </div>

@@ -2,12 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import AddExpense
 from django.contrib import messages
-from .models import Expense
+from .models import Expense, Income
 
 # Create your views here.
 @login_required
 def wallet(request):
-    return render(request, 'wallet/myWallet.html', {})
+    expenses = Expense.objects.filter(userID=request.user).order_by('-date')
+    incomes = Income.objects.filter(userID=request.user).order_by('-date')
+    context = {
+        'expenses': expenses,
+        'incomes': incomes
+    }
+    return render(request, 'wallet/myWallet.html', context)
 
 @login_required
 def addToWallet(request):
