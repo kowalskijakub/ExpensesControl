@@ -3,7 +3,7 @@
 
 {% block addition %} 
     <p>
-        Expenses summary: <b>+1300$</b>
+        October summary: <b>+1300$</b>
     </p>
 {% endblock %}
 {% load crispy_forms_tags %}
@@ -12,11 +12,12 @@
         <form method="post">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend>Add Expense:</legend>
+                <legend>Add:</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group mt-1">
                 <button type="submit" class="btn btn-success">Add</button>
+                <a type="button" class="btn btn-info" href="{% url 'wallet' %}">Back</a>
             </div>
         </form>
     </div>

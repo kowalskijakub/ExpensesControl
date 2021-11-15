@@ -36,14 +36,14 @@
                     </td>
                     <td>
                         <a type="button" class="btn btn-warning">Edit</a>
-                        <a type="button" class="btn btn-danger">Del</a>
+                        <!-- <a type="button" class="btn btn-danger">Del</a> -->
                     </td>
                   </tr>
                 {% endfor %}
                 </tbody>
               </table>
               <a type="button" class="btn btn-success" href="{% url 'addExpense' %}">Add</a>
-              <a type="button" class="btn btn-info">Show more</a>
+              <a type="button" class="btn btn-info" href="{% url 'expensesList' %}">Show more</a>
         </div>
         <hr>
         <div>
@@ -54,7 +54,7 @@
                     <th scope="col">Date</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Source</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Payment Method</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,14 +72,13 @@
                     </td>
                     <td>
                         <a type="button" class="btn btn-warning">Edit</a>
-                        <a type="button" class="btn btn-danger">Del</a>
                     </td>
                   </tr>
                 {% endfor %}
                 </tbody>
               </table>
               <a type="button" class="btn btn-success" href="{% url 'addIncome' %}">Add</a>
-              <a type="button" class="btn btn-info">Show more</a>
+              <a type="button" class="btn btn-info" href="{% url 'incomesList' %}">Show more</a>
         </div>
     </div>
 {% endblock %}

@@ -7,8 +7,8 @@ from .models import Expense, Income
 # Create your views here.
 @login_required
 def wallet(request):
-    expenses = Expense.objects.filter(userID=request.user).order_by('-date')
-    incomes = Income.objects.filter(userID=request.user).order_by('-date')
+    expenses = Expense.objects.filter(userID=request.user).order_by('-date')[:5]
+    incomes = Income.objects.filter(userID=request.user).order_by('-date')[:5]
     context = {
         'expenses': expenses,
         'incomes': incomes
@@ -50,3 +50,13 @@ def addIncome(request):
     else:
         form = AddIncome
     return render(request, 'wallet/addToWallet.html', {'form': form})
+
+@login_required
+def expensesList(request):
+    expenses = Expense.objects.filter(userID=request.user).order_by('-date')
+    return render(request, 'wallet/expenses.html', {'expenses': expenses})
+
+@login_required
+def incomesList(request):
+    incomes = Income.objects.filter(userID=request.user).order_by('-date')
+    return render(request, 'wallet/incomes.html', {'incomes': incomes})

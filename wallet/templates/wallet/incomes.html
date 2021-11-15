@@ -1,0 +1,48 @@
+{% extends 'users/loggedBase.html' %}
+{% block title %} My Wallet - Add {% endblock %}
+
+{% block addition %} 
+    <p>
+        Incomes summary: <b>+1300$</b>
+    </p>
+{% endblock %}
+{% block profileContent %}
+    <div class="col-12 col-lg-10 ">
+        <div>
+            <h3>Incomes</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for income in incomes %}
+                <tr>
+                    <th scope="row">{{income.date}}</th>
+                    <td>{{income.amount}}</td>
+                    <td>{{income.source}}</td>
+                    <td>
+                    {% ifequal income.paymentMethod "B" %}
+                    Bank
+                    {% else %}
+                    Cash
+                    {% endifequal %}
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-warning">Edit</a>
+                        <a type="button" class="btn btn-danger">Del</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a type="button" class="btn btn-success" href="{% url 'addIncome' %}">Add</a>
+            <a type="button" class="btn btn-info" href="{% url 'wallet' %}">Back</a>
+        </div>
+    </div>
+{% endblock %}
