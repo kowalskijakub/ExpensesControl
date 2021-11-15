@@ -15,3 +15,15 @@ class AddExpense(forms.ModelForm):
     class Meta:
         model = Expense
         fields = ['amount', 'date', 'source', 'paymentMethod']
+
+class AddIncome(forms.ModelForm):
+    amount = forms.DecimalField(max_digits=6, decimal_places=2)
+    date = forms.DateField(initial=datetime.date.today, label='Date [yyyy-mm-dd]')
+    source = forms.CharField(max_length=50)
+    paymentMethod = forms.ChoiceField(choices=PAYMENT_METHOD)
+     
+
+    class Meta:
+        model = Income
+        fields = ['amount', 'date', 'source', 'paymentMethod']
+

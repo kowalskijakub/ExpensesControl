@@ -42,7 +42,7 @@
                 {% endfor %}
                 </tbody>
               </table>
-              <a type="button" class="btn btn-success" href="{% url 'addToWallet' %}">Add</a>
+              <a type="button" class="btn btn-success" href="{% url 'addExpense' %}">Add</a>
               <a type="button" class="btn btn-info">Show more</a>
         </div>
         <hr>
@@ -78,6 +78,8 @@
                 {% endfor %}
                 </tbody>
               </table>
+              <a type="button" class="btn btn-success" href="{% url 'addIncome' %}">Add</a>
+              <a type="button" class="btn btn-info">Show more</a>
         </div>
     </div>
 {% endblock %}
