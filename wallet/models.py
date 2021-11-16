@@ -9,6 +9,7 @@ PAYMENT_METHOD = (
     )
 
 class Expense(models.Model):
+    id = models.BigAutoField(primary_key=True)
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2)
     date = models.DateField(default=datetime.date.today)
@@ -16,6 +17,7 @@ class Expense(models.Model):
     paymentMethod = models.CharField(max_length=1, choices=PAYMENT_METHOD)
 
 class Income(models.Model):
+    id = models.BigAutoField(primary_key=True)
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2)
     date = models.DateField(default=datetime.date.today)

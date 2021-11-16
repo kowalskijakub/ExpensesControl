@@ -5,7 +5,7 @@ import datetime
 
 
 
-class AddExpense(forms.ModelForm):
+class formExpense(forms.ModelForm):
     amount = forms.DecimalField(max_digits=6, decimal_places=2)
     date = forms.DateField(initial=datetime.date.today, label='Date [yyyy-mm-dd]')
     source = forms.CharField(max_length=50)
@@ -16,7 +16,7 @@ class AddExpense(forms.ModelForm):
         model = Expense
         fields = ['amount', 'date', 'source', 'paymentMethod']
 
-class AddIncome(forms.ModelForm):
+class formIncome(forms.ModelForm):
     amount = forms.DecimalField(max_digits=6, decimal_places=2)
     date = forms.DateField(initial=datetime.date.today, label='Date [yyyy-mm-dd]')
     source = forms.CharField(max_length=50)

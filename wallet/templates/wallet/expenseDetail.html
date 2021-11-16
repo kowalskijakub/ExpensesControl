@@ -1,6 +1,6 @@
 {% extends 'users/loggedBase.html' %}
 {% block title %} My Wallet - Add {% endblock %}
-
+{% load crispy_forms_tags %}
 {% block addition %} 
     <p>
         Expenses summary: <b>+1300$</b>
@@ -21,28 +21,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for expense in expenses %}
                     <tr>
-                        <th scope="row">{{expense.date}}</th>
+                        <th scope="row">{{ expense.date }}</th>
                         <td>{{expense.amount}}</td>
                         <td>{{expense.source}}</td>
                         <td>
                         {% ifequal expense.paymentMethod "B" %}
-                        Bank 
+                        Bank
                         {% else %}
                         Cash
                         {% endifequal %}
                         </td>
                         <td>
-                            <a type="button" class="btn btn-warning" href="{% url 'expenseDetail' idProduct=expense.id %}" >Edit</a>
-                            <a type="button" class="btn btn-danger" >Del</a>
+                            s
                         </td>
                     </tr>
-                {% endfor %}
                 </tbody>
             </table>
-            <a type="button" class="btn btn-success" href="{% url 'addExpense' %}">Add</a>
-            <a type="button" class="btn btn-info" href="{% url 'wallet' %}">Back</a>
+            <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend>Update:</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group mt-1">
+                    <button type="submit" class="btn btn-success">Update</button>
+                    <a type="button" class="btn btn-info" href="{% url 'wallet' %}">Back</a>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}

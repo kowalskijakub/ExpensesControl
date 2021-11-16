@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import AddExpense, AddIncome
+from .forms import formExpense, formIncome
 from django.contrib import messages
 from .models import Expense, Income
 
@@ -19,7 +19,7 @@ def wallet(request):
 def addExpense(request):
     if request.method == 'POST':
         post = request.POST
-        form = AddExpense(post)
+        form = formExpense(post)
         
         if form.is_valid():
             Expense.objects.create(userID = request.user, amount = post['amount'], 
@@ -28,16 +28,16 @@ def addExpense(request):
             username = request.user.username
             messages.success(request, f'Expense added for {username}')
         else:
-            form = AddExpense
+            form = formExpense
     else:
-        form = AddExpense
+        form = formExpense
     return render(request, 'wallet/addToWallet.html', {'form': form})
 
 @login_required
 def addIncome(request):
     if request.method == 'POST':
         post = request.POST
-        form = AddIncome(post)
+        form = formIncome(post)
         
         if form.is_valid():
             Income.objects.create(userID = request.user, amount = post['amount'], 
@@ -46,9 +46,9 @@ def addIncome(request):
             username = request.user.username
             messages.success(request, f'Expense added for {username}')
         else:
-            form = AddIncome
+            form = formIncome
     else:
-        form = AddIncome
+        form = formIncome
     return render(request, 'wallet/addToWallet.html', {'form': form})
 
 @login_required
@@ -60,3 +60,26 @@ def expensesList(request):
 def incomesList(request):
     incomes = Income.objects.filter(userID=request.user).order_by('-date')
     return render(request, 'wallet/incomes.html', {'incomes': incomes})
+
+@login_required
+def expenseDetail(request, idProduct):
+    
+    if request.method == 'POST':
+        post = request.POST
+        form = formExpense(post)
+        Expense.objects.filter(id=idProduct).update(
+                                            amount = post['amount'], 
+                                            date = post['date'], 
+                                            source = post['source'], 
+                                            paymentMethod = post['paymentMethod'])
+    expense = Expense.objects.get(id=idProduct)
+    form = formExpense(initial={
+                            'amount':expense.amount, 
+                            'date':expense.date, 
+                            'source': expense.source, 
+                            'paymentMethod':expense.paymentMethod})
+    content = {
+        'expense': expense, 
+        'form': form
+    }
+    return render(request, 'wallet/expenseDetail.html', content)

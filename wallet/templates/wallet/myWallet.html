@@ -35,7 +35,7 @@
                       {% endifequal %}
                     </td>
                     <td>
-                        <a type="button" class="btn btn-warning">Edit</a>
+                        <a type="button" class="btn btn-warning" href="{% url 'expenseDetail' idProduct=expense.id %}">Edit</a>
                         <!-- <a type="button" class="btn btn-danger">Del</a> -->
                     </td>
                   </tr>
