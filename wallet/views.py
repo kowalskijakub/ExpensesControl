@@ -106,3 +106,13 @@ def incomeDetail(request, idProduct):
         'form': form
     }
     return render(request, 'wallet/incomeDetail.html', content)
+
+@login_required
+def deleteExpense(request, idProduct):
+    Expense.objects.filter(id=idProduct).delete()
+    return redirect('expensesList')
+
+@login_required
+def deleteIncome(request, idProduct):
+    Income.objects.filter(id=idProduct).delete()
+    return redirect('incomesList')

@@ -30,8 +30,8 @@
                     {% endifequal %}
                     </td>
                     <td>
-                        <a type="button" class="btn btn-warning">Edit</a>
-                        <a type="button" class="btn btn-danger">Del</a>
+                        <a type="button" class="btn btn-warning" href="{% url 'incomeDetail' idProduct=income.id %}">Edit</a>
+                        <a type="button" class="btn btn-danger" href="{% url 'deleteIncome' idProduct=income.id %}">Del</a>
                     </td>
                 </tr>
                 {% endfor %}
