@@ -23,8 +23,16 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
+              {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" aria-current="page" href="{% url 'expensesList' %}">Expenses</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'incomesList' %}">Incomes</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
               </li>
             </ul>
             <ul class="navbar-nav ms-auto me-1 mb-2 mb-lg-0">
