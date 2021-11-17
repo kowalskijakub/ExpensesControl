@@ -2,16 +2,31 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import formExpense, formIncome
 from django.contrib import messages
-from .models import Expense, Income
+from .models import PAYMENT_METHOD, Expense, Income
+from datetime import date, datetime
+from django.db.models import Sum
 
 # Create your views here.
 @login_required
 def wallet(request):
     expenses = Expense.objects.filter(userID=request.user).order_by('-date')[:5]
     incomes = Income.objects.filter(userID=request.user).order_by('-date')[:5]
+    
+    thisMonth = datetime.now().strftime('%Y-%m')
+    sumExpense = Expense.objects.filter(date__icontains = thisMonth, userID = request.user).aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumExpense == None:
+        sumExpense= 0
+    sumIncome = Income.objects.filter(date__icontains = thisMonth, userID = request.user).aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumIncome == None:
+        sumIncome= 0
+    total = sumIncome - sumExpense
+    print(sumIncome)
     context = {
         'expenses': expenses,
-        'incomes': incomes
+        'incomes': incomes,
+        'sumExpense': sumExpense,
+        'sumIncome': sumIncome,
+        'total': total
     }
     return render(request, 'wallet/myWallet.html', context)
 
@@ -31,6 +46,9 @@ def addExpense(request):
             form = formExpense
     else:
         form = formExpense
+
+    
+    
     return render(request, 'wallet/addToWallet.html', {'form': form})
 
 @login_required
@@ -54,12 +72,48 @@ def addIncome(request):
 @login_required
 def expensesList(request):
     expenses = Expense.objects.filter(userID=request.user).order_by('-date')
-    return render(request, 'wallet/expenses.html', {'expenses': expenses})
+
+    thisMonth = datetime.now().strftime('%Y-%m')
+    sumExpense = Expense.objects.filter(date__icontains = thisMonth, userID = request.user).aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumExpense == None:
+        sumExpense= 0
+    sumCash = Expense.objects.filter(date__icontains = thisMonth, userID = request.user, paymentMethod='C').aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumCash == None:
+        sumCash= 0
+    sumBank = Expense.objects.filter(date__icontains = thisMonth, userID = request.user, paymentMethod='B').aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumBank== None:
+        sumBank= 0
+
+    context ={
+        'sumExpense': sumExpense,
+        'expenses': expenses,
+        'sumCash': sumCash,
+        'sumBank': sumBank
+    }
+    return render(request, 'wallet/expenses.html', context)
 
 @login_required
 def incomesList(request):
     incomes = Income.objects.filter(userID=request.user).order_by('-date')
-    return render(request, 'wallet/incomes.html', {'incomes': incomes})
+
+    thisMonth = datetime.now().strftime('%Y-%m')
+    sumIncome = Income.objects.filter(date__icontains = thisMonth, userID = request.user).aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumIncome == None:
+        sumIncome= 0
+    sumCash = Income.objects.filter(date__icontains = thisMonth, userID = request.user, paymentMethod='C').aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumCash == None:
+        sumCash= 0
+    sumBank = Income.objects.filter(date__icontains = thisMonth, userID = request.user, paymentMethod='B').aggregate(sumAmount=Sum('amount'))['sumAmount']
+    if sumBank== None:
+        sumBank= 0
+
+    context ={
+        'sumIncome': sumIncome,
+        'incomes': incomes,
+        'sumCash': sumCash,
+        'sumBank': sumBank
+    }
+    return render(request, 'wallet/incomes.html', context)
 
 @login_required
 def expenseDetail(request, idProduct):

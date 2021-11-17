@@ -1,7 +1,15 @@
 {% extends 'users/loggedBase.html' %}
 {% block title %} My Wallet {% endblock %}
 
+{% block addition %}
+  <h5>Summary of Month</h5>
+  <p class="text-start">
+    Total: <b>{{ total|floatformat:2 }}$</b> <br>
+    Expenses: <b>{{ sumExpense|floatformat:2 }}$</b><br>
+    Incomes: <b>{{ sumIncome|floatformat:2 }}$</b>
 
+  </p>
+{% endblock %}
 
 {% block profileContent %}
     <div class="col-12 col-lg-10 ">

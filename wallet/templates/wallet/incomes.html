@@ -1,7 +1,15 @@
 {% extends 'users/loggedBase.html' %}
 {% block title %} My Wallet - Add {% endblock %}
 
+{% block addition %}
+  <h5>Summary of Month</h5>
+  <p class="text-start">
+    Incomes: <b>{{ sumIncome|floatformat:2 }}$</b> <br>
+    Cash: <b>{{ sumCash|floatformat:2 }}$</b><br>
+    Bank: <b>{{ sumBank|floatformat:2 }}$</b>
 
+  </p>
+{% endblock %}
 {% block profileContent %}
     <div class="col-12 col-lg-10 ">
         <div>
@@ -18,22 +26,22 @@
                 </thead>
                 <tbody>
                 {% for income in incomes %}
-                <tr>
-                    <th scope="row">{{income.date}}</th>
-                    <td>{{income.amount}}</td>
-                    <td>{{income.source}}</td>
-                    <td>
-                    {% ifequal income.paymentMethod "B" %}
-                    Bank
-                    {% else %}
-                    Cash
-                    {% endifequal %}
-                    </td>
-                    <td>
-                        <a type="button" class="btn btn-warning" href="{% url 'incomeDetail' idProduct=income.id %}">Edit</a>
-                        <a type="button" class="btn btn-danger" href="{% url 'deleteIncome' idProduct=income.id %}">Del</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row">{{income.date}}</th>
+                        <td>{{income.amount}}</td>
+                        <td>{{income.source}}</td>
+                        <td>
+                        {% ifequal income.paymentMethod "B" %}
+                        Bank
+                        {% else %}
+                        Cash
+                        {% endifequal %}
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-warning">Edit</a>
+                            <a type="button" class="btn btn-danger" href="{% url 'deleteIncome' idProduct=income.id %}">Del</a>
+                        </td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>
