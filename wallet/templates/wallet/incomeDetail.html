@@ -1,11 +1,10 @@
 {% extends 'users/loggedBase.html' %}
 {% block title %} My Wallet - Add {% endblock %}
 {% load crispy_forms_tags %}
-
 {% block profileContent %}
     <div class="col-12 col-lg-10 ">
         <div>
-            <h3>Expenses</h3>
+            <h3>Incomes</h3>
             <table class="table">
                 <thead>
                 <tr>
@@ -18,11 +17,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">{{ expense.date }}</th>
-                        <td>{{expense.amount}}</td>
-                        <td>{{expense.source}}</td>
+                        <th scope="row">{{ income.date }}</th>
+                        <td>{{income.amount}}</td>
+                        <td>{{income.source}}</td>
                         <td>
-                        {% ifequal expense.paymentMethod "B" %}
+                        {% ifequal income.paymentMethod "B" %}
                         Bank
                         {% else %}
                         Cash

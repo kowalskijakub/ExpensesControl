@@ -83,3 +83,26 @@ def expenseDetail(request, idProduct):
         'form': form
     }
     return render(request, 'wallet/expenseDetail.html', content)
+
+@login_required
+def incomeDetail(request, idProduct):
+    
+    if request.method == 'POST':
+        post = request.POST
+        form = formIncome(post)
+        Income.objects.filter(id=idProduct).update(
+                                            amount = post['amount'], 
+                                            date = post['date'], 
+                                            source = post['source'], 
+                                            paymentMethod = post['paymentMethod'])
+    income = Income.objects.get(id=idProduct)
+    form = formIncome(initial={
+                            'amount':income.amount, 
+                            'date':income.date, 
+                            'source': income.source, 
+                            'paymentMethod':income.paymentMethod})
+    content = {
+        'income': income, 
+        'form': form
+    }
+    return render(request, 'wallet/incomeDetail.html', content)

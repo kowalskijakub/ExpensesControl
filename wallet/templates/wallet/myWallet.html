@@ -1,11 +1,7 @@
 {% extends 'users/loggedBase.html' %}
 {% block title %} My Wallet {% endblock %}
 
-{% block addition %} 
-    <p>
-        October summary: <b>+1300$</b>
-    </p>
-{% endblock %}
+
 
 {% block profileContent %}
     <div class="col-12 col-lg-10 ">
@@ -71,7 +67,7 @@
                       {% endifequal %}
                     </td>
                     <td>
-                        <a type="button" class="btn btn-warning">Edit</a>
+                        <a type="button" class="btn btn-warning" href="{% url 'incomeDetail' idProduct=income.id %}">Edit</a>
                     </td>
                   </tr>
                 {% endfor %}
