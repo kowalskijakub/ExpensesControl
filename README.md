@@ -3,6 +3,7 @@ Web application for money management. The project was created to learn the Djang
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Installation](#installation)
 * [Source file overview](#source-file-overview)
 * [Inspirations](#inspirations)
 
@@ -22,6 +23,19 @@ Web application for money management. The project was created to learn the Djang
 * wheel 0.37.0
 * Bootstrap 5
 
+## Installation
+
+First install the packages from the [Technologies](#technologies) chapter. Then download the source files and unzip them on your computer. Open cmd and navigate to the extracted folder, use the command:
+```console
+c:> python manage.py migrate
+c:> python manage.py migrate --run-syncdb
+```
+
+And you can run the application with the command:
+```console
+c:> python manage.py runserver
+```
+
 ## Source file overview
 Basic structure of the project:
 * ExpensesControl\
@@ -36,7 +50,6 @@ Basic structure of the project:
 -- The folder contains the Expenses and Revenue model, it also contains files to manage them. Performs the task for which the entire application was created
 * manage.py
 -- A file that manages the entire project
+
 ## Inspirations
 This app is based on tutorial to Django [Corey Schafer](https://www.youtube.com/watch?v=UmljXZIypDc)
-
-
