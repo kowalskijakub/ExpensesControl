@@ -45,3 +45,8 @@ def updateProfile(request):
         'p_form': p_form
     }
     return render(request, 'users/profileUpdateData.html', context)
+
+@login_required
+def deleteAccount(request):
+    User.objects.filter(id=request.user.id).delete()
+    return redirect('home')
